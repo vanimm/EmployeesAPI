@@ -10,7 +10,10 @@ class Employee extends Model
 {
     use HasFactory,SoftDeletes;
 
+    protected $table= "employees";
+
     protected $fillable = [
+        'id',
         'name',
         'username',
         'email',

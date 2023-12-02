@@ -30,9 +30,12 @@ class EmployeesController extends Controller
 
                 // verificar si el empleado existe
                 // $emp = Employee::where('email', $employee['email'])->first();
-                $emp = Employee::find($employee["id"]);
+
+
+                $emp = Employee::withTrashed()->find($employee["id"]);
+
                 // Si encuentra es porque ya existe. No debe cargar de nuevo.
-                if ($emp == null) {
+                if (!isset($emp)) {
 
                     // Recorro el array de address dejando atras el indice "geo"
                     $address_array = array_slice($employee['address'], 0, 3);
